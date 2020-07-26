@@ -1,0 +1,172 @@
+GHCi, version 7.10.3: http://www.haskell.org/ghc/  :? for help
+Prelude> :l hw9
+[1 of 2] Compiling Turing           ( Turing.hs, interpreted )
+[2 of 2] Compiling Main             ( hw9.hs, interpreted )
+Ok, modules loaded: Turing, Main.
+*Main> stepRun hwhhTM "wwhhhwwhhwhhwhhhhwhhw"
+0: start	 [w]whhhwwhhwhhwhhhhwhhw
+1: start	 w[w]hhhwwhhwhhwhhhhwhhw
+2: start	 ww[h]hhwwhhwhhwhhhhwhhw
+3: sawH	 wwh[h]hwwhhwhhwhhhhwhhw
+4: start	 wwhh[h]wwhhwhhwhhhhwhhw
+5: sawH	 wwhhh[w]whhwhhwhhhhwhhw
+6: sawW	 wwhhhw[w]hhwhhwhhhhwhhw
+7: start	 wwhhhww[h]hwhhwhhhhwhhw
+8: sawH	 wwhhhwwh[h]whhwhhhhwhhw
+9: start	 wwhhhwwhh[w]hhwhhhhwhhw
+10: start	 wwhhhwwhhw[h]hwhhhhwhhw
+11: sawH	 wwhhhwwhhwh[h]whhhhwhhw
+12: start	 wwhhhwwhhwhh[w]hhhhwhhw
+13: start	 wwhhhwwhhwhhw[h]hhhwhhw
+14: sawH	 wwhhhwwhhwhhwh[h]hhwhhw
+15: start	 wwhhhwwhhwhhwhh[h]hwhhw
+16: sawH	 wwhhhwwhhwhhwhhh[h]whhw
+17: start	 wwhhhwwhhwhhwhhhh[w]hhw
+18: start	 wwhhhwwhhwhhwhhhhw[h]hw
+19: sawH	 wwhhhwwhhwhhwhhhhwh[h]w
+20: start	 wwhhhwwhhwhhwhhhhwhh[w]
+21: start	 wwhhhwwhhwhhwhhhhwhhw[ ]
+*Main> 
+*Main> stepRun divis4 "mkkqmmkq"
+0: term1	 [m]kkqmmkq
+1: term1	  [k]kqmmkq
+2: term2	   [k]qmmkq
+3: term3	    [q]mmkq
+4: term4	     [m]mkq
+5: term4	      [m]kq
+6: term4	       [k]q
+7: term1	        [q]
+8: term2	         [ ]
+9: end	         N[ ]
+*Main> 
+*Main> stepRun divis4 "qqmmmqkkqqmkm"
+0: term1	 [q]qmmmqkkqqmkm
+1: term2	  [q]mmmqkkqqmkm
+2: term3	   [m]mmqkkqqmkm
+3: term3	    [m]mqkkqqmkm
+4: term3	     [m]qkkqqmkm
+5: term3	      [q]kkqqmkm
+6: term4	       [k]kqqmkm
+7: term1	        [k]qqmkm
+8: term2	         [q]qmkm
+9: term3	          [q]mkm
+10: term4	           [m]km
+11: term4	            [k]m
+12: term1	             [m]
+13: term1	              [ ]
+14: end	              Y[ ]
+*Main> 
+*Main> stepRun ddeeTM "deeeddeddee"
+0: start	 [d]eeeddeddee
+1: start	 d[e]eeddeddee
+2: findD	 dX[e]eddeddee
+3: findD	 dXe[e]ddeddee
+4: findD	 dXee[d]deddee
+5: replaceD	 dXe[e]ededdee
+6: replaceD	 dX[e]eededdee
+7: replaceD	 d[X]eeededdee
+8: start	 dd[e]eededdee
+9: findD	 ddX[e]ededdee
+10: findD	 ddXe[e]deddee
+11: findD	 ddXee[d]eddee
+12: replaceD	 ddXe[e]eeddee
+13: replaceD	 ddX[e]eeeddee
+14: replaceD	 dd[X]eeeeddee
+15: start	 ddd[e]eeeddee
+16: findD	 dddX[e]eeddee
+17: findD	 dddXe[e]eddee
+18: findD	 dddXee[e]ddee
+19: findD	 dddXeee[d]dee
+20: replaceD	 dddXee[e]edee
+21: replaceD	 dddXe[e]eedee
+22: replaceD	 dddX[e]eeedee
+23: replaceD	 ddd[X]eeeedee
+24: start	 dddd[e]eeedee
+25: findD	 ddddX[e]eedee
+26: findD	 ddddXe[e]edee
+27: findD	 ddddXee[e]dee
+28: findD	 ddddXeee[d]ee
+29: replaceD	 ddddXee[e]eee
+30: replaceD	 ddddXe[e]eeee
+31: replaceD	 ddddX[e]eeeee
+32: replaceD	 dddd[X]eeeeee
+33: start	 ddddd[e]eeeee
+34: findD	 dddddX[e]eeee
+35: findD	 dddddXe[e]eee
+36: findD	 dddddXee[e]ee
+37: findD	 dddddXeee[e]e
+38: findD	 dddddXeeee[e]
+39: findD	 dddddXeeeee[ ]
+*Main> 
+*Main>stepRun checkNum "12231131111222"
+0: start	 [1]2231131111222
+1: start	  [2]231131111222
+2: find3	   [2]31131111222
+3: find3	   2[3]1131111222
+4: goBack	   [2]X1131111222
+5: goBack	  [ ]2X1131111222
+6: start	   [2]X1131111222
+7: find3	    [X]1131111222
+8: find3	    X[1]131111222
+9: find3	    X1[1]31111222
+10: find3	    X11[3]1111222
+11: goBack	    X1[1]X1111222
+12: goBack	    X[1]1X1111222
+13: goBack	    [X]11X1111222
+14: goBack	   [ ]X11X1111222
+15: start	    [X]11X1111222
+16: start	     [1]1X1111222
+17: start	      [1]X1111222
+18: start	       [X]1111222
+19: start	        [1]111222
+20: start	         [1]11222
+21: start	          [1]1222
+22: start	           [1]222
+23: start	            [2]22
+24: find3	             [2]2
+25: find3	             2[2]
+26: find3	             22[ ]
+27: return	             2[2]M
+*Main> 
+*Main> stepRun checkNum "331122221131131"
+0: start	 [3]31122221131131
+1: find2	  [3]1122221131131
+2: find2	  3[1]122221131131
+3: find2	  31[1]22221131131
+4: find2	  311[2]2221131131
+5: goBack	  31[1]Y2221131131
+6: goBack	  3[1]1Y2221131131
+7: goBack	  [3]11Y2221131131
+8: goBack	 [ ]311Y2221131131
+9: start	  [3]11Y2221131131
+10: find2	   [1]1Y2221131131
+11: find2	   1[1]Y2221131131
+12: find2	   11[Y]2221131131
+13: find2	   11Y[2]221131131
+14: goBack	   11[Y]Y221131131
+*Main> 
+*Main> stepRun checkNum "1131223332"
+0: start	 [1]131223332
+1: start	  [1]31223332
+2: start	   [3]1223332
+3: find2	    [1]223332
+4: find2	    1[2]23332
+5: goBack	    [1]Y23332
+6: goBack	   [ ]1Y23332
+7: start	    [1]Y23332
+8: start	     [Y]23332
+9: start	      [2]3332
+10: find3	       [3]332
+11: goBack	      [ ]X332
+12: start	       [X]332
+13: start	        [3]32
+14: find2	         [3]2
+15: find2	         3[2]
+16: goBack	         [3]Y
+17: goBack	        [ ]3Y
+18: start	         [3]Y
+19: find2	          [Y]
+20: find2	          Y[ ]
+21: return	          [Y]F
+*Main> 
+*Main> 
